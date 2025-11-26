@@ -26,6 +26,9 @@ namespace ImdbProject
             services.AddSingleton<MainViewModel>();
             services.AddTransient<TitleDetailsViewModel>();
             services.AddTransient<MainWindow>();
+            
+            // Register IServiceProvider so it can be injected into MainWindow
+            services.AddSingleton<IServiceProvider>(sp => sp);
         }
 
         private async void Application_Startup(object sender, StartupEventArgs e)

@@ -26,7 +26,7 @@ namespace ImdbProject.ViewModels
         public MainViewModel(ITitleService titleService)
         {
             _titleService = titleService;
-       
+        
             Titles = [];
 
         }

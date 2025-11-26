@@ -10,6 +10,7 @@ using ImdbProject.Services.Ratings;
 using ImdbProject.Services.TitleAliases;
 using ImdbProject.Services.Titles;
 using Microsoft.Extensions.DependencyInjection;
+using ImdbProject.ViewModels;
 
 namespace ImdbProject.Services
 {
@@ -43,6 +44,12 @@ namespace ImdbProject.Services
             services.AddTransient<ITitleAliasService, TitleAliasService>();
             services.AddTransient<IGenreService, GenreService>();
 
+            return services;
+        }
+        public static IServiceCollection AddViewModels(this IServiceCollection services)
+        {
+            services.AddSingleton<MainViewModel>();
+            services.AddTransient<TitleDetailsViewModel>();
             return services;
         }
     }
