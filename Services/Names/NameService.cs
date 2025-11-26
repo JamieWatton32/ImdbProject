@@ -1,14 +1,14 @@
 using ImdbProject.Models;
-using ImdbProject.Repositories;
-using System.Threading.Tasks;
+using ImdbProject.Repositories.Interfaces;
+using ImdbProject.Services.Interfaces;
 
 namespace ImdbProject.Services.Names
 {
-    public class NameService : BaseService<Name>
+    public class NameService : BaseService<Name>, INameService
     {
-        private readonly NameRepository _nameRepository;
+        private readonly INameRepository _nameRepository;
 
-        public NameService(NameRepository repository) : base(repository)
+        public NameService(INameRepository repository) : base(repository)
         {
             _nameRepository = repository;
         }

@@ -1,24 +1,15 @@
 using ImdbProject.Models;
+using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ImdbProject.Repositories
 {
-    public class TitleRepository : Repository<Title>
+    public class TitleRepository : Repository<Title>, ITitleRepository
     {
         public TitleRepository(ImdbContext context) : base(context)
         {
         }
 
-        public override async Task<IEnumerable<Title>> GetAllAsync()
-        {
-            return await _dbSet
-                .Include(t => t.Genres)
-                .Include(t => t.Rating)
-                .Include(t => t.EpisodeTitle)
-                .ToListAsync();
-        }
 
         public override async Task<Title?> GetByIdAsync(object id)
         {
@@ -43,6 +34,15 @@ namespace ImdbProject.Repositories
                 .Include(t => t.NamesNavigation)  // Known for
                 .FirstOrDefaultAsync(t => t.TitleId == titleId);
         }
+
+        public async Task<List<Title>> GetTvSeries()
+        {
+            return await _dbSet
+                .Where(t => t.TitleType == "tvSeries")
+                .Where(t => t.StartYear >= 2000)
+                 .Include(t => t.EpisodeParentTitles)
+                    .Where(t => t.EpisodeParentTitles.Count != 0)
+                .ToListAsync();
+        }
     }
 }
-        

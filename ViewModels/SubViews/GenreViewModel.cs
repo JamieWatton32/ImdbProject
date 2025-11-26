@@ -15,7 +15,6 @@ namespace ImdbProject.ViewModels
         [ObservableProperty]
         private string _name = null!;
 
-        // Navigation property
         [ObservableProperty]
         private ObservableCollection<Title> _titles = [];
 

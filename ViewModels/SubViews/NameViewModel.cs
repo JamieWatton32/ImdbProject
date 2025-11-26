@@ -24,7 +24,6 @@ namespace ImdbProject.ViewModels
         [ObservableProperty]
         private string? _primaryProfession;
 
-        // Navigation properties
         [ObservableProperty]
         private ObservableCollection<Principal> _principals = [];
 

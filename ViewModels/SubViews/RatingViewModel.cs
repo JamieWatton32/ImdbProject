@@ -17,7 +17,6 @@ namespace ImdbProject.ViewModels
         [ObservableProperty]
         private int? _numVotes;
 
-        // Navigation property
         [ObservableProperty]
         private Title _title = null!;
 

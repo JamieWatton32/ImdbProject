@@ -1,16 +1,15 @@
 ﻿using ImdbProject.Models;
-using ImdbProject.Repositories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using ImdbProject.Repositories.Interfaces;
+using ImdbProject.Services.Interfaces;
 
 
 namespace ImdbProject.Services.Principals
 {
-    public class PrincipalService : BaseService<Principal>
+    public class PrincipalService : BaseService<Principal>, IPrincipalService
     {
-        private readonly PrincipalRepository _principalRepository;
+        private readonly IPrincipalRepository _principalRepository;
 
-        public PrincipalService(PrincipalRepository repository) : base(repository)
+        public PrincipalService(IPrincipalRepository repository) : base(repository)
         {
             _principalRepository = repository;
         }

@@ -26,7 +26,6 @@ namespace ImdbProject.ViewModels
         [ObservableProperty]
         private string? _characters;
 
-        // Navigation property
         [ObservableProperty]
         private Name? _name;
 

@@ -1,14 +1,14 @@
 ﻿using ImdbProject.Models;
-using ImdbProject.Repositories;
-using System.Threading.Tasks;
+using ImdbProject.Repositories.Interfaces;
+using ImdbProject.Services.Interfaces;
 
 namespace ImdbProject.Services.Ratings
 {
-    public class RatingService : BaseService<Rating>
+    public class RatingService : BaseService<Rating>, IRatingService
     {
-        private readonly RatingRepository _ratingRepository;
+        private readonly IRatingRepository _ratingRepository;
 
-        public RatingService(RatingRepository repository) : base(repository)
+        public RatingService(IRatingRepository repository) : base(repository)
         {
             _ratingRepository = repository;
         }

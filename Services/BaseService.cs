@@ -1,15 +1,15 @@
-﻿using ImdbProject.Repositories;
-using System.Collections.Generic;
+﻿
+using ImdbProject.Repositories.Interfaces;
+using ImdbProject.Services.Interfaces;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace ImdbProject.Services
 {
-    public abstract class BaseService<TEntity> where TEntity : class
+    public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
     {
-        protected readonly Repository<TEntity> _repository;
+        protected readonly IRepository<TEntity> _repository;
 
-        protected BaseService(Repository<TEntity> repository)
+        protected BaseService(IRepository<TEntity> repository)
         {
             _repository = repository;
         }

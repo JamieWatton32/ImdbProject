@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ImdbProject"
+             xmlns:converters="clr-namespace:ImdbProject.Converters"
              Startup="Application_Startup">
     <Application.Resources>
-         
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
     </Application.Resources>
 </Application>

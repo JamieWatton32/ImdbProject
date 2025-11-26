@@ -1,13 +1,17 @@
 ﻿using ImdbProject.Models;
-using ImdbProject.Repositories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using ImdbProject.Repositories.Interfaces;
+using ImdbProject.Services.Interfaces;
 
 namespace ImdbProject.Services.Episodes
 {
-    public class EpisodeService(EpisodeRepository repository) : BaseService<Episode>(repository)
+    public class EpisodeService : BaseService<Episode>, IEpisodeService
     {
-        private readonly EpisodeRepository _episodeRepository = repository;
+        private readonly IEpisodeRepository _episodeRepository;
+
+        public EpisodeService(IEpisodeRepository episodeRepository) : base(episodeRepository)
+        {
+            _episodeRepository = episodeRepository;
+        }
 
         public async Task<Episode?> GetEpisodeAsync(string titleId)
         {

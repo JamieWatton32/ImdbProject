@@ -1,11 +1,10 @@
 using ImdbProject.Models;
+using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ImdbProject.Repositories
 {
-    public class EpisodeRepository : Repository<Episode>
+    public class EpisodeRepository : Repository<Episode>, IEpisodeRepository
     {
         public EpisodeRepository(ImdbContext context) : base(context)
         {
@@ -26,6 +25,7 @@ namespace ImdbProject.Repositories
                 .Include(e => e.ParentTitle)
                 .FirstOrDefaultAsync(e => e.TitleId == (string)id);
         }
+
         public async Task<Episode?> GetEpisodeWithDetailsAsync(string titleId)
         {
             return await _dbSet

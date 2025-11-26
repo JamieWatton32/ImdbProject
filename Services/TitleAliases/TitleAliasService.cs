@@ -1,15 +1,14 @@
 using ImdbProject.Models;
-using ImdbProject.Repositories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using ImdbProject.Repositories.Interfaces;
+using ImdbProject.Services.Interfaces;
 
 namespace ImdbProject.Services.TitleAliases
 {
-    public class TitleAliasService : BaseService<TitleAlias>
+    public class TitleAliasService : BaseService<TitleAlias>, ITitleAliasService
     {
-        private readonly TitleAliasRepository _titleAliasRepository;
+        private readonly ITitleAliasRepository _titleAliasRepository;
 
-        public TitleAliasService(TitleAliasRepository repository) : base(repository)
+        public TitleAliasService(ITitleAliasRepository repository) : base(repository)
         {
             _titleAliasRepository = repository;
         }

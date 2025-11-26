@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ImdbProject.Models;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 namespace ImdbProject.ViewModels
 {
@@ -45,7 +46,7 @@ namespace ImdbProject.ViewModels
         private Episode? _episodeTitle;
 
         [ObservableProperty]
-        private ObservableCollection<Episode> _episodeParentTitles = [];
+        private ObservableCollection<Episode> _episodes = [];
 
         [ObservableProperty]
         private ObservableCollection<TitleAlias> _titleAliases = [];
@@ -74,7 +75,7 @@ namespace ImdbProject.ViewModels
                 Genres = new ObservableCollection<Genre>(title.Genres),
                 Rating = title.Rating,
                 EpisodeTitle = title.EpisodeTitle,
-                EpisodeParentTitles = new ObservableCollection<Episode>(title.EpisodeParentTitles),
+                Episodes = new ObservableCollection<Episode>(title.EpisodeParentTitles),
                 TitleAliases = new ObservableCollection<TitleAlias>(title.TitleAliases),
                 Directors = new ObservableCollection<Name>(title.Names),
                 Writers = new ObservableCollection<Name>(title.Names1),

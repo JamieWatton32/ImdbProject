@@ -1,12 +1,15 @@
 using ImdbProject.Models;
+using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ImdbProject.Repositories
 {
-    public class NameRepository(ImdbContext context) : Repository<Name>(context)
+    public class NameRepository : Repository<Name>, INameRepository
     {
+        public NameRepository(ImdbContext context) : base(context)
+        {
+        }
+
         public override async Task<IEnumerable<Name>> GetAllAsync()
         {
             return await _dbSet

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36603.0 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImdbProject", "ImdbProject.csproj", "{67A76387-E48E-4D88-8D28-F5CB64745633}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{AF84CAB8-40B5-43DD-8F16-BFECD3B43F21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{67A76387-E48E-4D88-8D28-F5CB64745633}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67A76387-E48E-4D88-8D28-F5CB64745633}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67A76387-E48E-4D88-8D28-F5CB64745633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF84CAB8-40B5-43DD-8F16-BFECD3B43F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF84CAB8-40B5-43DD-8F16-BFECD3B43F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF84CAB8-40B5-43DD-8F16-BFECD3B43F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF84CAB8-40B5-43DD-8F16-BFECD3B43F21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

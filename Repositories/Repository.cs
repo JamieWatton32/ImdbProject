@@ -1,15 +1,12 @@
 ﻿using ImdbProject.Models;
+using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImdbProject.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    // Base class that every other repository will inherit from for basic CRUD operations
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly ImdbContext _context;
         protected readonly DbSet<TEntity> _dbSet;

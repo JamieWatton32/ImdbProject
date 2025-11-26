@@ -1,11 +1,10 @@
 using ImdbProject.Models;
+using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ImdbProject.Repositories
 {
-    public class TitleAliasRepository : Repository<TitleAlias>
+    public class TitleAliasRepository : Repository<TitleAlias>, ITitleAliasRepository
     {
         public TitleAliasRepository(ImdbContext context) : base(context)
         {

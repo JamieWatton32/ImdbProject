@@ -1,11 +1,11 @@
 using ImdbProject.Models;
+using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace ImdbProject.Repositories
 {
-    public class RatingRepository : Repository<Rating>
+    public class RatingRepository : Repository<Rating>, IRatingRepository
     {
         public RatingRepository(ImdbContext context) : base(context)
         {

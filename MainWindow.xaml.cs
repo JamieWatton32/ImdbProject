@@ -1,14 +1,6 @@
 ﻿using ImdbProject.ViewModels;
-using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ImdbProject
 {
@@ -17,9 +9,16 @@ namespace ImdbProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly MainViewModel _mainViewModel;
+        private readonly TitleDetailsViewModel _titleDetailsViewModel;
+
+        public MainWindow(MainViewModel mainViewModel, TitleDetailsViewModel titleDetailsViewModel)
         {
             InitializeComponent();
+            _mainViewModel = mainViewModel;
+            _titleDetailsViewModel = titleDetailsViewModel;
+            DataContext = _mainViewModel;
+
         }
     }
 }

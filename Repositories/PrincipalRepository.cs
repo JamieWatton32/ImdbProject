@@ -1,11 +1,10 @@
 using ImdbProject.Models;
+using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ImdbProject.Repositories
 {
-    public class PrincipalRepository : Repository<Principal>
+    public class PrincipalRepository : Repository<Principal>, IPrincipalRepository
     {
         public PrincipalRepository(ImdbContext context) : base(context)
         {

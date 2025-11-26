@@ -1,21 +1,26 @@
 using ImdbProject.Models;
-using ImdbProject.Repositories;
-using System.Threading.Tasks;
+using ImdbProject.Repositories.Interfaces;
+using ImdbProject.Services.Interfaces;
 
 namespace ImdbProject.Services.Titles
 {
-    public class TitleService : BaseService<Title>
+    public class TitleService : BaseService<Title>, ITitleService
     {
-        private readonly TitleRepository _titleRepository;
+        private readonly ITitleRepository _titleRepository;
 
-        public TitleService(TitleRepository repository) : base(repository)
+        public TitleService(ITitleRepository repository) : base(repository)
         {
             _titleRepository = repository;
         }
 
-        public async Task<Title?> GetTitleAsync(string titleId)
+        public Task<Title?> GetTitleAsync(string titleId)
         {
-            return await _titleRepository.GetTitleWithDetailsAsync(titleId);
+            return _titleRepository.GetTitleWithDetailsAsync(titleId);
+        }
+
+        public Task<List<Title>> GetTitlesWithEpisodesAsync()
+        {
+            return _titleRepository.GetTvSeries();
         }
     }
-}   
+}
