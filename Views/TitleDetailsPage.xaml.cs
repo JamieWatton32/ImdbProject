@@ -36,7 +36,7 @@ namespace ImdbProject.Views
 
             await nameDetailsViewModel.LoadNameDetailsAsync(titleId);
 
-            var detailsPage = new NameViewModel();
+            var detailsPage = new NameDetailPage(nameDetailsViewModel);
 
             NavigationService?.Navigate(detailsPage);
         }

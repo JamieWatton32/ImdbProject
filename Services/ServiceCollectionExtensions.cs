@@ -54,5 +54,11 @@ namespace ImdbProject.Services
             services.AddTransient<NameDetailViewModel>();
             return services;
         }
+        public static IServiceCollection AddWindows(this IServiceCollection services)
+        {
+            services.AddTransient<MainWindow>();
+            return services;
+        }
+
     }
 }

@@ -23,11 +23,10 @@ namespace ImdbProject
         {
             services.AddImdbRepositories();
             services.AddImdbServices();
-            services.AddSingleton<MainViewModel>();
-            services.AddTransient<TitleDetailsViewModel>();
-            services.AddTransient<MainWindow>();
-            
-            // Register IServiceProvider so it can be injected into MainWindow
+            services.AddViewModels();
+            services.AddWindows();
+
+            // Need to register the service itself so we can have DI for local scopes.
             services.AddSingleton<IServiceProvider>(sp => sp);
         }
 

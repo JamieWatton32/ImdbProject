@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImdbProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,14 @@ namespace ImdbProject.Views
     /// </summary>
     public partial class NameDetailPage : Page
     {
-        public NameDetailPage()
+        private readonly NameDetailViewModel _viewModel;
+        public NameDetailPage(NameDetailViewModel viewModel)
         {
             InitializeComponent();
+            _viewModel = viewModel;
+            DataContext = _viewModel;
         }
+
         private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (NavigationService?.CanGoBack == true)

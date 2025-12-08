@@ -7,34 +7,33 @@
       d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TitleListPage">
+      Title="TitleListPage"
+      Style="{StaticResource PageStyle}">
 
-    <Grid>
+    <Grid Margin="10">
         <DataGrid ItemsSource="{Binding Titles}" 
                   SelectedItem="{Binding SelectedTitle}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Title ID"
-                                    Binding="{Binding TitleId}"
-                                    Width="100"
-                                    IsReadOnly="True"/>
                 <DataGridTextColumn Header="Title"
                                     Binding="{Binding PrimaryTitle}"
                                     Width="*" 
                                     IsReadOnly="True"/>
+    
                 <DataGridTextColumn Header="Runtime"
-                                    Binding="{Binding RuntimeMinutes}"
+                                    Binding="{Binding RuntimeMinutes, StringFormat='{}{0} Mins'}"
                                     Width="80" 
                                     IsReadOnly="True"/>
+                
                 <DataGridTextColumn Header="Rating"
-                                    Binding="{Binding Rating.AverageRating, StringFormat='{}{0:F1}'}"
+                                    Binding="{Binding Rating.AverageRating, StringFormat='{}{0:F1}/10'}"
                                     Width="80" 
                                     IsReadOnly="True"/>
 
                 <!-- Favourite heart toggle -->
-                <DataGridTemplateColumn Header="Fav" Width="60" IsReadOnly="True">
+                <DataGridTemplateColumn Header="Fav" Width="80" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Command="{Binding DataContext.ToggleFavouriteCommand,
@@ -48,12 +47,12 @@
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="Text" Value="♡"/>
-                                            <Setter Property="Foreground" Value="Gray"/>
+                                            <Setter Property="Foreground" Value="{StaticResource MutedTextBrush}"/>
                                             <Setter Property="FontSize" Value="16"/>
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsFavourite}" Value="True">
                                                     <Setter Property="Text" Value="♥"/>
-                                                    <Setter Property="Foreground" Value="Red"/>
+                                                    <Setter Property="Foreground" Value="#FFEF4444"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
