@@ -1,0 +1,83 @@
+﻿<Page x:Class="ImdbProject.Views.TitleListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewmodels="clr-namespace:ImdbProject.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TitleListPage">
+
+    <Grid>
+        <DataGrid ItemsSource="{Binding Titles}" 
+                  SelectedItem="{Binding SelectedTitle}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title ID"
+                                    Binding="{Binding TitleId}"
+                                    Width="100"
+                                    IsReadOnly="True"/>
+                <DataGridTextColumn Header="Title"
+                                    Binding="{Binding PrimaryTitle}"
+                                    Width="*" 
+                                    IsReadOnly="True"/>
+                <DataGridTextColumn Header="Runtime"
+                                    Binding="{Binding RuntimeMinutes}"
+                                    Width="80" 
+                                    IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rating"
+                                    Binding="{Binding Rating.AverageRating, StringFormat='{}{0:F1}'}"
+                                    Width="80" 
+                                    IsReadOnly="True"/>
+
+                <!-- Favourite heart toggle -->
+                <DataGridTemplateColumn Header="Fav" Width="60" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.ToggleFavouriteCommand,
+                                                      RelativeSource={RelativeSource AncestorType=Page}}"
+                                    CommandParameter="{Binding}"
+                                    BorderThickness="0"
+                                    Background="Transparent"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                <TextBlock>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="♡"/>
+                                            <Setter Property="Foreground" Value="Gray"/>
+                                            <Setter Property="FontSize" Value="16"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsFavourite}" Value="True">
+                                                    <Setter Property="Text" Value="♥"/>
+                                                    <Setter Property="Foreground" Value="Red"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- "View Details" button -->
+                <DataGridTemplateColumn Header="Actions" Width="120" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="View Details" 
+                                    Command="{Binding DataContext.GoToTitleDetailsCommand,
+                                                      RelativeSource={RelativeSource AncestorType=Page}}"
+                                    CommandParameter="{Binding TitleId}"
+                                    Padding="10,5"
+                                    Margin="5" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

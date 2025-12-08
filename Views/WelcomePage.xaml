@@ -1,0 +1,43 @@
+﻿<Page x:Class="ImdbProject.Views.WelcomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WelcomePage">
+
+    <Grid Background="#FF111827">
+        <Border HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#CC1F2937"
+                Padding="24"
+                Margin="16"
+                CornerRadius="12">
+            <StackPanel Width="420">
+                <TextBlock Text="Welcome to the IMDB Browser"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           TextAlignment="Center"
+                           Margin="0,0,0,12" />
+
+                <TextBlock Text="Browse the IMDB database, view title details, and manage your favourites."
+                           FontSize="14"
+                           Foreground="#FFD1D5DB"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Margin="0,0,0,20" />
+
+                <Button Content="Browse Titles"
+                        Padding="10,6"
+                        Margin="0,0,0,8"
+                        Click="BrowseTitles_Click" />
+
+                <Button Content="View Favourites"
+                        Padding="10,6"
+                        Click="ViewFavourites_Click" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
