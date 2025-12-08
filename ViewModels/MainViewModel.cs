@@ -55,7 +55,6 @@ namespace ImdbProject.ViewModels
             Titles.Clear();
             FavouriteTitles.Clear();
 
-            // TODO: THIS SHOULD LOAD MOVIES TOO BUT I NEED TO DEBUG IF EPISODES ARE LOADING PROPERLY FIRST
             var titles = await _titleService.GetTitlesWithEpisodesAsync();
 
             foreach (var title in titles)
