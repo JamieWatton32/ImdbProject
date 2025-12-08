@@ -1,3 +1,4 @@
+using ImdbProject.Data;
 using ImdbProject.Models;
 using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -35,24 +36,15 @@ namespace ImdbProject.Repositories
                 .FirstOrDefaultAsync(t => t.TitleId == titleId);
         }
 
-        public async Task<List<Title>> GetTvSeries()
-        {
-            return await _dbSet
-                .Where(t => t.TitleType == "tvSeries")
-                .Where(t => t.StartYear >= 2000)
-                 .Include(t => t.EpisodeParentTitles)
-                    .Where(t => t.EpisodeParentTitles.Count != 0)
-                .ToListAsync();
-        }
         public async Task<List<Title>> GetTvAndMovies()
         {
             return await _dbSet
-                .Where(t => t.TitleType == "tvSeries")
-                .Where(t => t.TitleType == "movie")
-                .Where(t => t.StartYear >= 2000)
-                 .Include(t => t.EpisodeParentTitles)
-                    .Where(t => t.EpisodeParentTitles.Count != 0)
-                .ToListAsync();
+                    .Where(t => t.TitleType == "tvSeries" || t.TitleType == "movie")
+                    .Where(t => t.StartYear >= 2000)
+                    .Where(t => t.Rating != null && t.Rating.AverageRating != null)
+                    .Where(t => t.RuntimeMinutes != null)
+                    .Include(t => t.Rating)
+                    .ToListAsync();
         }
     }
 }

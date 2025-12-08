@@ -8,7 +8,7 @@ namespace ImdbProject.Repositories
 {
     public class RatingRepository : Repository<Rating>, IRatingRepository
     {
-        public RatingRepository(ImdbCsontext context) : base(context)
+        public RatingRepository(ImdbContext context) : base(context)
         {
         }
 

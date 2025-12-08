@@ -11,6 +11,7 @@ using ImdbProject.Services.TitleAliases;
 using ImdbProject.Services.Titles;
 using Microsoft.Extensions.DependencyInjection;
 using ImdbProject.ViewModels;
+using ImdbProject.Data;
 
 namespace ImdbProject.Services
 {
@@ -50,6 +51,7 @@ namespace ImdbProject.Services
         {
             services.AddSingleton<MainViewModel>();
             services.AddTransient<TitleDetailsViewModel>();
+            services.AddTransient<NameDetailViewModel>();
             return services;
         }
     }

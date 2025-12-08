@@ -42,7 +42,7 @@ namespace ImdbProject
             
             await titleDetailsViewModel.LoadTitleDetailsAsync(titleId);
 
-            var detailsPage = new TitleDetailsPage { DataContext = _mainViewModel };
+            var detailsPage = new TitleDetailsPage(_serviceProvider, titleDetailsViewModel);
 
             MainFrame.Navigate(detailsPage);
         }

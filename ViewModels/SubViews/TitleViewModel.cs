@@ -58,7 +58,7 @@ namespace ImdbProject.ViewModels
         private ObservableCollection<Name> _writers = [];
 
         [ObservableProperty]
-        private ObservableCollection<Name> _knownFor = [];
+        private ObservableCollection<Name> _cast = [];
 
         public static TitleViewModel FromModel(Title title)
         {
@@ -79,7 +79,7 @@ namespace ImdbProject.ViewModels
                 TitleAliases = new ObservableCollection<TitleAlias>(title.TitleAliases),
                 Directors = new ObservableCollection<Name>(title.Names),
                 Writers = new ObservableCollection<Name>(title.Names1),
-                KnownFor = new ObservableCollection<Name>(title.NamesNavigation)
+                Cast = new ObservableCollection<Name>(title.NamesNavigation)
             };
         }
     }

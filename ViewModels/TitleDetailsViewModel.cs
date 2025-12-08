@@ -1,27 +1,37 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using ImdbProject.Models;
+using ImdbProject.Services.Interfaces;
 
 
 namespace ImdbProject.ViewModels
 {
     public partial class TitleDetailsViewModel : ObservableObject
     {
-        private readonly MainViewModel _mainViewModel;
+        private readonly ITitleService _titleService;
 
         [ObservableProperty]
         private TitleViewModel? _selectedTitle;
 
-        public TitleDetailsViewModel(MainViewModel mainViewModel)
+        public event Action<string>? NavigateToNameDetails;
+        public TitleDetailsViewModel(ITitleService titleService)
         {
-            _mainViewModel = mainViewModel;
+            _titleService = titleService;
         }
 
         public async Task LoadTitleDetailsAsync(string titleId)
         {
-            var title = _mainViewModel.Titles.FirstOrDefault(t => t.TitleId == titleId);
+            var title = await _titleService.GetTitleAsync(titleId);
             if (title != null)
             {
-                SelectedTitle = title;
+                SelectedTitle = TitleViewModel.FromModel(title);
             }
+        }
+
+        [RelayCommand]
+        private void GoToNameDetails(string titleId)
+        {
+            NavigateToNameDetails?.Invoke(titleId);
         }
     }
 }
