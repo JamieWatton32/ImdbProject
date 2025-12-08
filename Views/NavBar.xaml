@@ -11,9 +11,9 @@
                 Style="{StaticResource NavButtonStyle}"/>
         <Button Content="Search"
                 Style="{StaticResource NavButtonStyle}"/>
-        <Button Content="Details"
-                Style="{StaticResource NavButtonStyle}"/>
         <Button Content="Favorites"
+                Style="{StaticResource NavButtonStyle}"/>
+        <Button Content="Settings"
                 Style="{StaticResource NavButtonStyle}"/>
     </ToolBar>
 </UserControl>
