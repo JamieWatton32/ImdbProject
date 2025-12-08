@@ -35,6 +35,9 @@ namespace ImdbProject.ViewModels
         [ObservableProperty]
         private short? _runtimeMinutes;
 
+        [ObservableProperty]
+        private bool _isFavourite;
+
         // Navigation properties
         [ObservableProperty]
         private ObservableCollection<Genre> _genres = [];

@@ -2,9 +2,9 @@ using System.Windows.Controls;
 
 namespace ImdbProject.Views
 {
-    public partial class HomePage : Page
+    public partial class TitleListPage : Page
     {
-        public HomePage()
+        public TitleListPage()
         {
             InitializeComponent();
         }
