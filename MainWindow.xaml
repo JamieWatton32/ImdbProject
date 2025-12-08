@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImdbProject" 
         xmlns:viewmodels="clr-namespace:ImdbProject.ViewModels" 
+        xmlns:views="clr-namespace:ImdbProject.Views"
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         Title="IMDB Browser" Height="600" Width="1000">
@@ -14,19 +15,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <!-- Navigation Bar, unsure if wanted.
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="LightGray">
-            <Button Content="Search" 
-                    Click="BackButton_Click"
-                    Padding="10,5"
-                    Margin="5"/>
-        </StackPanel> -->
-        
-        <!-- Frame enables page navigation -->
-        <Frame x:Name="MainFrame" 
-               Grid.Row="1"
-               NavigationUIVisibility="Hidden"/>
+
+        <TextBlock Style="{StaticResource titleStyle}" Grid.Row="0" Text="IMDB Movie Explorer"/>
+        <DockPanel Grid.Row="1">
+            <views:NavBar DockPanel.Dock="Top"/>
+            <!-- Frame enables page navigation -I am not a fan of frame, may switch to ContentControl-->
+            <Frame x:Name="MainFrame"
+                   NavigationUIVisibility="Hidden"/>
+        </DockPanel>
     </Grid>
 </Window>
 
