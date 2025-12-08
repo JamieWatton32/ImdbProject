@@ -22,6 +22,7 @@ namespace ImdbProject.ViewModels
         private bool _isLoading;
 
         public event Action<string>? NavigateToTitleDetails;
+        public event Action? NavigateToSettings;
 
         public MainViewModel(ITitleService titleService)
         {
@@ -54,6 +55,11 @@ namespace ImdbProject.ViewModels
         private void GoToTitleDetails(string titleId)
         {
             NavigateToTitleDetails?.Invoke(titleId);
+        }
+        [RelayCommand]
+        private void GoToSettings()
+        {
+            NavigateToSettings?.Invoke();
         }
     }
 }
