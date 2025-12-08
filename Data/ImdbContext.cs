@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ImdbProject.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace ImdbProject.Models;
+namespace ImdbProject.Data;
 
 public partial class ImdbContext : DbContext
 {

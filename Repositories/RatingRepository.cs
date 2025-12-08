@@ -1,3 +1,4 @@
+using ImdbProject.Data;
 using ImdbProject.Models;
 using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ namespace ImdbProject.Repositories
 {
     public class RatingRepository : Repository<Rating>, IRatingRepository
     {
-        public RatingRepository(ImdbContext context) : base(context)
+        public RatingRepository(ImdbCsontext context) : base(context)
         {
         }
 

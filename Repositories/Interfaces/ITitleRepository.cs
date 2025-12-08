@@ -6,5 +6,6 @@ namespace ImdbProject.Repositories.Interfaces
     {
         Task<Title?> GetTitleWithDetailsAsync(string titleId);
         Task<List<Title>> GetTvSeries();
+        Task<List<Title>> GetTvAndMovies();
     }
 }
