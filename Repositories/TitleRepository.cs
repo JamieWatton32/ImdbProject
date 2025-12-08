@@ -44,5 +44,15 @@ namespace ImdbProject.Repositories
                     .Where(t => t.EpisodeParentTitles.Count != 0)
                 .ToListAsync();
         }
+        public async Task<List<Title>> GetTvAndMovies()
+        {
+            return await _dbSet
+                .Where(t => t.TitleType == "tvSeries")
+                .Where(t => t.TitleType == "movie")
+                .Where(t => t.StartYear >= 2000)
+                 .Include(t => t.EpisodeParentTitles)
+                    .Where(t => t.EpisodeParentTitles.Count != 0)
+                .ToListAsync();
+        }
     }
 }
