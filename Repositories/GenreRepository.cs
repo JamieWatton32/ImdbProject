@@ -1,3 +1,4 @@
+using ImdbProject.Data;
 using ImdbProject.Models;
 using ImdbProject.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;

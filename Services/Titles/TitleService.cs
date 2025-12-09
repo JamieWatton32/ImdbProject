@@ -19,8 +19,9 @@ namespace ImdbProject.Services.Titles
         }
 
         public Task<List<Title>> GetTitlesWithEpisodesAsync()
-        {
-            return _titleRepository.GetTvSeries();
+        { 
+            return _titleRepository.GetTvAndMovies();
+
         }
     }
 }

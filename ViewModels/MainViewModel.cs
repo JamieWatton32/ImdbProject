@@ -1,8 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ImdbProject.Models;
 using ImdbProject.Services.Interfaces;
+using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ImdbProject.ViewModels
 {
@@ -13,7 +16,16 @@ namespace ImdbProject.ViewModels
     public partial class MainViewModel : ObservableObject
     {
         private readonly ITitleService _titleService;
+
+        /// <summary>
+        /// All titles loaded from the database.
+        /// </summary>
         public ObservableCollection<TitleViewModel> Titles { get; }
+
+        /// <summary>
+        /// Titles that are currently marked as favourites.
+        /// </summary>
+        public ObservableCollection<TitleViewModel> FavouriteTitles { get; }
 
         [ObservableProperty]
         private TitleViewModel? _selectedTitle;
@@ -28,7 +40,7 @@ namespace ImdbProject.ViewModels
             _titleService = titleService;
         
             Titles = [];
-
+            FavouriteTitles = [];
         }
 
         public async Task InitializeAsync()
@@ -40,13 +52,15 @@ namespace ImdbProject.ViewModels
 
         public async Task LoadTitlesAsync()
         {
-            // TODO: THIS SHOULD LOAD MOVIES TOO BUT I NEED TO DEBUG IF EPISODES ARE LOADING PROPERLY FIRSTS
-            var titles = await _titleService.GetTitlesWithEpisodesAsync();
             Titles.Clear();
+            FavouriteTitles.Clear();
+
+            var titles = await _titleService.GetTitlesWithEpisodesAsync();
 
             foreach (var title in titles)
             {
-                Titles.Add(TitleViewModel.FromModel(title));
+                var vm = TitleViewModel.FromModel(title);
+                Titles.Add(vm);
             }
         }
 
@@ -54,6 +68,34 @@ namespace ImdbProject.ViewModels
         private void GoToTitleDetails(string titleId)
         {
             NavigateToTitleDetails?.Invoke(titleId);
+        }
+
+        /// <summary>
+        /// Toggle the favourite state of a given title and keep FavouriteTitles in sync.
+        /// </summary>
+        [RelayCommand]
+        private void ToggleFavourite(TitleViewModel? title)
+        {
+            if (title is null)
+                return;
+
+            // Flip the boolean on the row ViewModel
+            title.IsFavourite = !title.IsFavourite;
+
+            if (title.IsFavourite)
+            {
+                if (!FavouriteTitles.Contains(title))
+                {
+                    FavouriteTitles.Add(title);
+                }
+            }
+            else
+            {
+                if (FavouriteTitles.Contains(title))
+                {
+                    FavouriteTitles.Remove(title);
+                }
+            }
         }
     }
 }

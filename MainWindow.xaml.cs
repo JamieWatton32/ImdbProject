@@ -23,17 +23,41 @@ namespace ImdbProject
 
             // Subscribe to navigation events
             _mainViewModel.NavigateToTitleDetails += OnNavigateToTitleDetails;
-            
-            NavigateToHome();
+
+            NavigateToWelcome();
         }
 
-        private void NavigateToHome()
+        /// <summary>
+        /// Navigate to the landing / welcome screen.
+        /// </summary>
+        private void NavigateToWelcome()
         {
-            var homePage = new HomePage
+            var welcomePage = new WelcomePage();
+            MainFrame.Navigate(welcomePage);
+        }
+
+        /// <summary>
+        /// Navigate to the main title list page.
+        /// </summary>
+        public void NavigateToTitleList()
+        {
+            var titleListPage = new TitleListPage
             {
                 DataContext = _mainViewModel
             };
-            MainFrame.Navigate(homePage);
+            MainFrame.Navigate(titleListPage);
+        }
+
+        /// <summary>
+        /// Navigate to the favourites page.
+        /// </summary>
+        public void NavigateToFavourites()
+        {
+            var favouritesPage = new FavouritesPage
+            {
+                DataContext = _mainViewModel
+            };
+            MainFrame.Navigate(favouritesPage);
         }
 
         private async void OnNavigateToTitleDetails(string titleId)
@@ -42,14 +66,24 @@ namespace ImdbProject
             
             await titleDetailsViewModel.LoadTitleDetailsAsync(titleId);
 
-            var detailsPage = new TitleDetailsPage { DataContext = _mainViewModel };
+            var detailsPage = new TitleDetailsPage(_serviceProvider, titleDetailsViewModel);
 
             MainFrame.Navigate(detailsPage);
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigateToHome();
+            NavigateToWelcome();
+        }
+
+        private void TitlesButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToTitleList();
+        }
+
+        private void FavouritesButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToFavourites();
         }
 
         protected override void OnClosed(EventArgs e)

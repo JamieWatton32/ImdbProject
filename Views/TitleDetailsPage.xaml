@@ -5,28 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ImdbProject.Views"
       xmlns:viewmodels="clr-namespace:ImdbProject.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:TitleDetailsViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TitleDetailsPage">
+      Title="TitleDetailsPage"
+      Style="{StaticResource PageStyle}">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <!-- Row 0: Back Button -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 1: Image and Title Info -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 2: Overview and Cast -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Row 0: Back Button -->
-        <Button Grid.Row="0" 
-                HorizontalAlignment="Left" 
-                Margin="0,0,0,10"
-                Padding="15,8"
-                Content="← Back to Main"
+        <Button Grid.Row="0"
+                Content="← Back to Search"
                 Click="BackButton_Click"
-                FontSize="14"/>
+                Style="{StaticResource BackButtonStyle}"
+                HorizontalAlignment="Left"
+                Margin="0,0,0,10"/>
 
         <!-- Row 1: Image (25%) and Title Info (75%) -->
         <Grid Grid.Row="1" Margin="0,0,0,20">
@@ -36,42 +34,31 @@
             </Grid.ColumnDefinitions>
 
             <!-- Image Section -->
-            <Border Grid.Column="0" 
-                    BorderBrush="LightGray" 
-                    BorderThickness="1" 
-                    CornerRadius="5"
-                    Margin="0,0,15,0"
-                    Background="#F5F5F5">
+            <Border Grid.Column="0"
+                    Style="{StaticResource ImagePlaceholderBorderStyle}"
+                    Margin="0,0,15,0">
                 <Grid>
-                    <!-- Placeholder for poster image -->
                     <Image Stretch="UniformToFill" 
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"/>
                     
-                    <!-- Placeholder text when no image -->
-                    <TextBlock Text="No Poster Available" 
+                    <TextBlock Text="No Poster Available"
+                               Style="{StaticResource MutedTextStyle}"
                                VerticalAlignment="Center" 
-                               HorizontalAlignment="Center"
-                               Foreground="Gray"
-                               FontStyle="Italic"/>
+                               HorizontalAlignment="Center"/>
                 </Grid>
             </Border>
 
             <!-- Title Info Section -->
             <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <!-- Title -->
-                    <TextBlock Text="{Binding SelectedTitle.PrimaryTitle}" 
-                               FontSize="32" 
-                               FontWeight="Bold"
-                               TextWrapping="Wrap"
-                               Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding SelectedTitle.PrimaryTitle}"
+                               Style="{StaticResource PageHeaderStyle}"
+                               TextWrapping="Wrap"/>
                     
-                    <!-- Original Title -->
-                    <TextBlock Text="{Binding SelectedTitle.OriginalTitle}" 
-                               FontSize="16" 
-                               FontStyle="Italic"
-                               Foreground="Gray"
+                    <TextBlock Text="{Binding SelectedTitle.OriginalTitle}"
+                               Style="{StaticResource MutedTextStyle}"
+                               FontSize="16"
                                Margin="0,0,0,15"
                                Visibility="{Binding SelectedTitle.OriginalTitle, Converter={StaticResource NullToVisibilityConverter}}"/>
 
@@ -89,33 +76,33 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Text="Type:" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
-                        <TextBlock Text="{Binding SelectedTitle.TitleType}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+                        <TextBlock Text="Type:" Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
+                        <TextBlock Text="{Binding SelectedTitle.TitleType, Converter={StaticResource StringFormatConverter}}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
 
-                        <TextBlock Text="Year:" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
+                        <TextBlock Text="Year:" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5">
                             <TextBlock Text="{Binding SelectedTitle.StartYear}"/>
                             <TextBlock Text=" - " Visibility="{Binding SelectedTitle.EndYear, Converter={StaticResource NullToVisibilityConverter}}"/>
                             <TextBlock Text="{Binding SelectedTitle.EndYear}" Visibility="{Binding SelectedTitle.EndYear, Converter={StaticResource NullToVisibilityConverter}}"/>
                         </StackPanel>
 
-                        <TextBlock Text="Runtime:" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5"/>
+                        <TextBlock Text="Runtime:" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5"/>
                         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5">
                             <TextBlock Text="{Binding SelectedTitle.RuntimeMinutes}"/>
-                            <TextBlock Text=" minutes" Margin="5,0,0,0"/>
+                            <TextBlock Text=" Minutes" Margin="5,0,0,0"/>
                         </StackPanel>
 
-                        <TextBlock Text="Rating:" FontWeight="Bold" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5"
+                        <TextBlock Text="Rating:" Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5"
                                    Visibility="{Binding SelectedTitle.Rating, Converter={StaticResource NullToVisibilityConverter}}"/>
                         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="0,0,0,5"
                                     Visibility="{Binding SelectedTitle.Rating, Converter={StaticResource NullToVisibilityConverter}}">
                             <TextBlock Text="{Binding SelectedTitle.Rating.AverageRating, StringFormat='{}{0:F1}/10'}"/>
                             <TextBlock Text=" (" Margin="5,0,0,0"/>
                             <TextBlock Text="{Binding SelectedTitle.Rating.NumVotes, StringFormat='{}{0:N0}'}"/>
-                            <TextBlock Text=" votes)"/>
+                            <TextBlock Text=" Votes)"/>
                         </StackPanel>
 
-                        <TextBlock Text="Genres:" FontWeight="Bold" Grid.Row="4" Grid.Column="0" Margin="0,0,10,0"
+                        <TextBlock Text="Genres:" Style="{StaticResource LabelStyle}" Grid.Row="4" Grid.Column="0" Margin="0,0,10,0"
                                    VerticalAlignment="Top"
                                    Visibility="{Binding SelectedTitle.Genres.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
                         <ItemsControl ItemsSource="{Binding SelectedTitle.Genres}" Grid.Row="4" Grid.Column="1"
@@ -127,11 +114,8 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Background="LightBlue" 
-                                            CornerRadius="3" 
-                                            Padding="8,4" 
-                                            Margin="0,0,5,5">
-                                        <TextBlock Text="{Binding GenreName}" FontSize="12"/>
+                                    <Border Style="{StaticResource GenreTagBorderStyle}">
+                                        <TextBlock Text="{Binding Name}" Style="{StaticResource GenreTagTextStyle}"/>
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -149,23 +133,18 @@
             </Grid.ColumnDefinitions>
 
             <!-- Overview Box -->
-            <Border Grid.Column="0" 
-                    BorderBrush="LightGray" 
-                    BorderThickness="1" 
-                    CornerRadius="5"
-                    Padding="15"
+            <Border Grid.Column="0"
+                    Style="{StaticResource CardBorderStyle}"
                     Margin="0,0,10,0">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <TextBlock Text="Overview" 
-                                   FontSize="20" 
-                                   FontWeight="Bold" 
-                                   Margin="0,0,0,15"/>
+                        <TextBlock Text="Overview"
+                                   Style="{StaticResource SectionHeaderStyle}"/>
 
                         <!-- Directors -->
                         <StackPanel Margin="0,0,0,15"
                                     Visibility="{Binding SelectedTitle.Directors.Count, Converter={StaticResource CountToVisibilityConverter}}">
-                            <TextBlock Text="Directors" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Directors" Style="{StaticResource SubHeaderStyle}"/>
                             <ItemsControl ItemsSource="{Binding SelectedTitle.Directors}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -178,7 +157,7 @@
                         <!-- Writers -->
                         <StackPanel Margin="0,0,0,15"
                                     Visibility="{Binding SelectedTitle.Writers.Count, Converter={StaticResource CountToVisibilityConverter}}">
-                            <TextBlock Text="Writers" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Writers" Style="{StaticResource SubHeaderStyle}"/>
                             <ItemsControl ItemsSource="{Binding SelectedTitle.Writers}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -191,7 +170,7 @@
                         <!-- Episodes -->
                         <StackPanel Margin="0,0,0,0"
                                     Visibility="{Binding SelectedTitle.Episodes.Count, Converter={StaticResource CountToVisibilityConverter}}">
-                            <TextBlock Text="Episodes" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Episodes" Style="{StaticResource SubHeaderStyle}"/>
                             <TextBlock>
                                 <Run Text="{Binding SelectedTitle.Episodes.Count, Mode=OneWay}"/>
                                 <Run Text=" episode(s)"/>
@@ -202,11 +181,8 @@
             </Border>
 
             <!-- Cast Box -->
-            <Border Grid.Column="1" 
-                    BorderBrush="LightGray" 
-                    BorderThickness="1" 
-                    CornerRadius="5"
-                    Padding="15"
+            <Border Grid.Column="1"
+                    Style="{StaticResource CardBorderStyle}"
                     Margin="10,0,0,0">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -214,40 +190,61 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" 
-                               Text="Cast" 
-                               FontSize="20" 
-                               FontWeight="Bold" 
-                               Margin="0,0,0,15"/>
+                    <TextBlock Grid.Row="0"
+                               Text="Cast"
+                               Style="{StaticResource SectionHeaderStyle}"/>
 
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <!-- Placeholder for cast list -->
-                            <TextBlock Text="Cast information will be displayed here" 
-                                       Foreground="Gray"
-                                       FontStyle="Italic"
-                                       TextWrapping="Wrap"/>
-                            
-                            <!-- You can bind this to a cast collection when available -->
-                            <!-- Example:
                             <ItemsControl ItemsSource="{Binding SelectedTitle.Cast}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="0,0,0,10">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Ellipse Width="40" Height="40" Fill="LightGray" Grid.Column="0" Margin="0,0,10,0"/>
-                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding ActorName}" FontWeight="Bold"/>
-                                                <TextBlock Text="{Binding CharacterName}" FontSize="12" Foreground="Gray"/>
-                                            </StackPanel>
-                                        </Grid>
+                                        <Button Command="{Binding DataContext.GoToNameDetailsCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding NameId}"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                HorizontalContentAlignment="Stretch"
+                                                Padding="0"
+                                                Margin="0,0,0,10"
+                                                Cursor="Hand">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="Button">
+                                                                <Border Background="{TemplateBinding Background}"
+                                                                        Padding="5"
+                                                                        CornerRadius="4">
+                                                                    <ContentPresenter/>
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter Property="Background" Value="#33374151"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Button.Style>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Ellipse Width="40" Height="40" Fill="#FF374151" Grid.Column="0" Margin="0,0,10,0"/>
+                                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding PrimaryName}" FontWeight="Bold"/>
+                                                    <TextBlock Text="{Binding PrimaryProfession, Converter={StaticResource StringFormatConverter}}" 
+                                                              FontSize="12"
+                                                              Style="{StaticResource MutedTextStyle}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Button>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                            -->
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>

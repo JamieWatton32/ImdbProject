@@ -15,14 +15,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <!-- Navigation Bar, unsure if wanted.
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="LightGray">
-            <Button Content="Search" 
-                    Click="BackButton_Click"
+        <!-- Navigation Bar -->
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    Background="LightGray">
+            <Button Content="Home"
+                    Click="HomeButton_Click"
                     Padding="10,5"
-                    Margin="5"/>
-        </StackPanel> -->
-        
+                    Margin="5" />
+            <Button Content="Browse Titles"
+                    Click="TitlesButton_Click"
+                    Padding="10,5"
+                    Margin="5" />
+            <Button Content="Favourites"
+                    Click="FavouritesButton_Click"
+                    Padding="10,5"
+                    Margin="5" />
+        </StackPanel>
+
         <!-- Frame enables page navigation -->
         <Frame x:Name="MainFrame" 
                Grid.Row="1"
