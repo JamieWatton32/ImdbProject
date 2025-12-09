@@ -59,6 +59,15 @@ namespace ImdbProject
             };
             MainFrame.Navigate(favouritesPage);
         }
+        /// <summary>
+        /// Navigate to the Settings page.
+        /// </summary>
+        public void NavigateToSettings() {
+            var settingsPage = new SettingsPage {
+                DataContext = _mainViewModel
+            };
+            MainFrame.Navigate(settingsPage);
+        }
 
         private async void OnNavigateToTitleDetails(string titleId)
         {
@@ -86,10 +95,16 @@ namespace ImdbProject
             NavigateToFavourites();
         }
 
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+           NavigateToSettings();
+        }
+
         protected override void OnClosed(EventArgs e)
         {
             _mainViewModel.NavigateToTitleDetails -= OnNavigateToTitleDetails;
             base.OnClosed(e);
         }
+
     }
 }
