@@ -1,0 +1,122 @@
+﻿<Page x:Class="ImdbProject.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ImdbProject.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Style="{StaticResource PageStyle}"
+      Title="SettingsPage">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0"
+            Orientation="Horizontal"
+            Margin="0,0,0,8">
+            <TextBlock Text="Settings"
+               FontSize="24"
+               FontWeight="Bold"
+               VerticalAlignment="Center"
+               Margin="0,0,16,0" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <TextBlock Text="Application Settings" FontSize="24" Margin="0,0,0,20"/>
+
+                <!-- Click Counter Section -->
+                <TextBlock Text="User Interaction" FontSize="18" Margin="0,0,0,10"/>
+                <StackPanel Margin="20,0,0,20">
+                    <Button x:Name="ClickButton" Content="Click Me!" Width="150" 
+                        HorizontalAlignment="Left" Click="ClickButton_Click"/>
+                    <TextBlock x:Name="ClickCountText" Text="Clicked 0 times" 
+                           Margin="0,5,0,0" FontWeight="Bold"/>
+
+                    <Button x:Name="ResetButton" Content="Reset Counter" Width="150" 
+                        HorizontalAlignment="Left" Margin="0,10,0,0" Click="ResetButton_Click"/>
+                    <TextBlock x:Name="ResetStatusText" Text="" 
+                           Margin="0,5,0,0" Foreground="Gray"/>
+                </StackPanel>
+
+                <!-- Cold Brew Status -->
+                <TextBlock Text="Cold Brew Monitor" FontSize="18" Margin="0,0,0,10"/>
+                <StackPanel Margin="20,0,0,20">
+                    <Button x:Name="CheckBrewButton" Content="Check Cold Brew Status" 
+                        Width="180" HorizontalAlignment="Left" Click="CheckBrewButton_Click"/>
+                    <TextBlock x:Name="BrewStatusText" Text="Status unknown..." 
+                           Margin="0,5,0,0" FontStyle="Italic"/>
+                    <TextBlock x:Name="BrewTempText" Text="" 
+                           Margin="0,2,0,0" Foreground="DarkBlue"/>
+                </StackPanel>
+
+                <!-- Toggle Switches -->
+                <TextBlock Text="Feature Toggles" FontSize="18" Margin="0,10,0,10"/>
+                <StackPanel Margin="20,0,0,20">
+                    <CheckBox x:Name="DarkModeCheck" Content="Dark Mode" 
+                          Checked="DarkModeCheck_Changed" Unchecked="DarkModeCheck_Changed"/>
+                    <TextBlock x:Name="DarkModeStatus" Text="Light mode active" 
+                           Margin="0,5,0,10" Foreground="Gray"/>
+
+                    <CheckBox x:Name="CatModeCheck" Content="Enable Cat Pictures" 
+                          Checked="CatModeCheck_Changed" Unchecked="CatModeCheck_Changed"/>
+                    <TextBlock x:Name="CatModeStatus" Text="Cat mode disabled 😢" 
+                           Margin="0,5,0,10" Foreground="Gray"/>
+
+                    <CheckBox x:Name="TurboCheck" Content="Turbo Mode (Experimental)" 
+                          Checked="TurboCheck_Changed" Unchecked="TurboCheck_Changed"/>
+                    <TextBlock x:Name="TurboStatus" Text="Running at normal speed" 
+                           Margin="0,5,0,10" Foreground="Gray"/>
+                </StackPanel>
+
+                <!-- Mystery Button -->
+                <TextBlock Text="Mystery Actions" FontSize="18" Margin="0,0,0,10"/>
+                <StackPanel Margin="20,0,0,20">
+                    <Button x:Name="MysteryButton" Content="??? Press Me ???" 
+                        Width="150" HorizontalAlignment="Left" Click="MysteryButton_Click"/>
+                    <TextBlock x:Name="MysteryText" Text="What does this button do?" 
+                           Margin="0,5,0,0" FontStyle="Italic"/>
+                    <TextBlock x:Name="MysteryCounter" Text="" 
+                           Margin="0,2,0,10" FontWeight="Bold" Foreground="Purple"/>
+                </StackPanel>
+
+                <!-- Random Fortune Generator -->
+                <TextBlock Text="Daily Fortune" FontSize="18" Margin="0,0,0,10"/>
+                <StackPanel Margin="20,0,0,20">
+                    <Button x:Name="FortuneButton" Content="Get Fortune" 
+                        Width="150" HorizontalAlignment="Left" Click="FortuneButton_Click"/>
+                    <TextBlock x:Name="FortuneText" Text="Click for your fortune..." 
+                           Margin="0,5,0,0" TextWrapping="Wrap" MaxWidth="400" 
+                           HorizontalAlignment="Left" FontStyle="Italic" Foreground="DarkGreen"/>
+                </StackPanel>
+
+                <!-- Progress Bar Fun -->
+                <TextBlock Text="Loading Simulator" FontSize="18" Margin="0,10,0,10"/>
+                <StackPanel Margin="20,0,0,20">
+                    <Button x:Name="LoadButton" Content="Start Loading" 
+                        Width="150" HorizontalAlignment="Left" Click="LoadButton_Click"/>
+                    <ProgressBar x:Name="LoadProgress" Height="20" 
+                             Margin="0,10,0,5" Maximum="100" Value="0"/>
+                    <TextBlock x:Name="LoadStatusText" Text="Ready to load..." 
+                           Margin="0,0,0,10" Foreground="Gray"/>
+                </StackPanel>
+
+                <!-- Stats Display -->
+                <TextBlock Text="Session Statistics" FontSize="18" Margin="0,0,0,10"/>
+                <StackPanel Margin="20,0,0,20">
+                    <TextBlock x:Name="SessionTimeText" Text="Time in settings: 0 seconds" 
+                           Margin="0,0,0,5"/>
+                    <TextBlock x:Name="TotalClicksText" Text="Total interactions: 0" 
+                           Margin="0,0,0,5"/>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>
